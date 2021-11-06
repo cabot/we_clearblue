@@ -12,23 +12,30 @@
 		
 		<div class="inventea-breadcrumbs-container">
 			<ul class="linklist inventea-breadcrumbs">
-				<!-- DEFINE $MICRODATA = ' itemtype="http://data-vocabulary.org/Breadcrumb" itemscope=""' -->
+				{% set MICRODATA = 'itemtype="https://schema.org/ListItem" itemprop="itemListElement" itemscope' %}
 				{% set navlink_position = 1 %}
-				<!-- EVENT overall_header_breadcrumbs_before -->
-				<li class="small-icon icon-home" data-skip-responsive="true">
-					{L_JUMP_TO}: <!-- IF U_SITE_HOME --><span class="crumb" {$MICRODATA}><a href="{U_SITE_HOME}" itemtype="https://schema.org/Thing" itemscope itemprop="item" data-navbar-reference="home"><span itemprop="name">{L_SITE_HOME}</span></a><meta itemprop="position" content="{{ navlink_position }}{% set navlink_position = navlink_position + 1 %}" /></span><!-- ENDIF -->
-					<!-- EVENT overall_header_breadcrumb_prepend -->
-					<span class="crumb" {$MICRODATA}><a href="{U_INDEX}" itemtype="https://schema.org/Thing" itemscope itemprop="item" accesskey="h" data-navbar-reference="index"><span itemprop="name">{L_INDEX}</span></a><meta itemprop="position" content="{{ navlink_position }}{% set navlink_position = navlink_position + 1 %}" /></span>
-					<!-- BEGIN navlinks -->
-						{% set NAVLINK_NAME = navlinks.BREADCRUMB_NAME | default(navlinks.FORUM_NAME) %}
-						{% set NAVLINK_LINK = navlinks.U_BREADCRUMB | default(navlinks.U_VIEW_FORUM) %}					
-						<!-- EVENT overall_header_navlink_prepend -->
-						<span class="crumb" {$MICRODATA}<!-- IF navlinks.MICRODATA --> {navlinks.MICRODATA}<!-- ENDIF -->><a href="{{ NAVLINK_LINK }}" itemtype="https://schema.org/Thing" itemscope itemprop="item"><span itemprop="name">{{ NAVLINK_NAME }}</span></a><meta itemprop="position" content="{{ navlink_position }}{% set navlink_position = navlink_position + 1 %}" /></span>
-						<!-- EVENT overall_header_navlink_append -->
-					<!-- END navlinks -->
-					<!-- EVENT overall_header_breadcrumb_append -->
+				{% EVENT overall_header_breadcrumbs_before %}
+
+				<li class="inventea-breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+
+				{% if U_SITE_HOME %}
+					<span class="crumb" {{ MICRODATA }}><a itemprop="item" href="{{ U_SITE_HOME }}" data-navbar-reference="home"><i class="icon fa-home fa-fw" aria-hidden="true"></i><span itemprop="name">{{ L_SITE_HOME }}</span></a><meta itemprop="position" content="{{ navlink_position }}{% set navlink_position = navlink_position + 1 %}" /></span>
+				{% endif %}
+
+				{% EVENT overall_header_breadcrumb_prepend %}
+					<span class="crumb" {{ MICRODATA }}><a itemprop="item" href="{{ U_INDEX }}" accesskey="h" data-navbar-reference="index">{% if not U_SITE_HOME %}<i class="icon fa-home fa-fw"></i>{% endif %}<span itemprop="name">{{ L_INDEX }}</span></a><meta itemprop="position" content="{{ navlink_position }}{% set navlink_position = navlink_position + 1 %}" /></span>
+
+				{% for navlink in navlinks %}
+					{% set NAVLINK_NAME = navlink.BREADCRUMB_NAME | default(navlink.FORUM_NAME) %}
+					{% set NAVLINK_LINK = navlink.U_BREADCRUMB | default(navlink.U_VIEW_FORUM) %}
+
+					{% EVENT overall_header_navlink_prepend %}
+					<span class="crumb" {{ MICRODATA }}{% if navlink.MICRODATA %} {{ navlink.MICRODATA }}{% endif %}><a itemprop="item" href="{{ NAVLINK_LINK }}"><span itemprop="name">{{ NAVLINK_NAME }}</span></a><meta itemprop="position" content="{{ navlink_position }}{% set navlink_position = navlink_position + 1 %}" /></span>
+					{% EVENT overall_header_navlink_append %}
+				{% endfor %}
+
+				{% EVENT overall_header_breadcrumb_append %}
 				</li>
-				<!-- EVENT overall_header_breadcrumbs_after -->
 			</ul>
 		</div>
 
@@ -36,7 +43,7 @@
 			<!-- EVENT overall_footer_copyright_prepend -->
 		<p class="footer-row">
 			<span class="footer-copyright">{{ CREDIT_LINE }}
-			<br />Style we_clearblue created by <a href="https://inventea.com/" title="phpBB styles, HTML5 &amp; CSS3 templates">INVENTEA</a> & <a href="http://forum.melvingarcia.com/"  title="phpBB styles">Melvin García</a>
+			<br />Style we_clearblue created by <a href="https://inventea.com/" title="phpBB styles, HTML5 &amp; CSS3 templates">INVENTEA</a> & <a href="https://nextgen.gt"  title="phpBB styles">nextgen</a>
 			</span>
 		</p>
 		<!-- IF TRANSLATION_INFO -->
@@ -81,7 +88,7 @@
 </div>
 
 <script src="{T_JQUERY_LINK}"></script>
-<!-- IF S_ALLOW_CDN --><script>window.jQuery || document.write('\x3Cscript src="{T_ASSETS_PATH}/javascript/jquery-3.4.1.min.js?assets_version={T_ASSETS_VERSION}">\x3C/script>');</script><!-- ENDIF -->
+<!-- IF S_ALLOW_CDN --><script>window.jQuery || document.write('\x3Cscript src="{T_ASSETS_PATH}/javascript/jquery-3.6.0.min.js?assets_version={T_ASSETS_VERSION}">\x3C/script>');</script><!-- ENDIF -->
 <script src="{T_ASSETS_PATH}/javascript/core.js?assets_version={T_ASSETS_VERSION}"></script>
 <!-- INCLUDEJS forum_fn.js -->
 <!-- INCLUDEJS ajax.js -->

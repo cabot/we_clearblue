@@ -508,7 +508,7 @@ p.rules img {
 /**
 * Button padding in fieldset
 */
-fieldset.fields1 ul.recipients  input.button2{
+fieldset.fields1 ul.recipients  input.button2 {
 	padding: 0 10px;
 }
 

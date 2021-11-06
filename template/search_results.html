@@ -68,6 +68,7 @@
 					<dt><div class="list-inner">{L_TOPICS}</div></dt>
 					<dd class="posts">{L_STATISTICS}</dd>
 					<dd class="lastpost"><span>{L_LAST_POST}</span></dd>
+					{% EVENT search_results_topic_header_lastpost_after %}
 				</dl>
 			</li>
 		</ul>
@@ -154,6 +155,7 @@
 							<br /><time datetime="{searchresults.LAST_POST_TIME_RFC3339}">{searchresults.LAST_POST_TIME}</time>
 						</span>
 					</dd>
+					{% EVENT search_results_topic_row_lastpost_after %}					
 				</dl>
 			</li>
 			<!-- EVENT search_results_topic_after -->
@@ -179,6 +181,7 @@
 
 	<!-- IF searchresults.S_IGNORE_POST -->
 		<div class="postbody">
+			{% EVENT search_results_post_subject_before %}
 			{searchresults.L_IGNORE_POST}
 		</div>
 	<!-- ELSE -->
@@ -237,8 +240,9 @@
 			 &bull; {PAGE_NUMBER}
 		<!-- ENDIF -->
 	</div>
-</div>
+</div>	
 
+{% EVENT search_results_jumpbox_before %}
 <!-- INCLUDE jumpbox.html -->
 
 <!-- INCLUDE overall_footer.html -->
