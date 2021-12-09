@@ -304,8 +304,11 @@ ul.linklist.inventea-forum-menu li.responsive-menu a.responsive-menu-link:before
 /**
  * Breadcrumbs
  */
-ul.linklist li.inventea-breadcrumbs {
-	float: none;
+ul.linklist > li.inventea-breadcrumbs {
+	margin: 0;
+	padding: 0;
+	line-height: 18px;
+	font-size: 12px;
 }
 
 .inventea-breadcrumbs .crumb {
@@ -313,6 +316,12 @@ ul.linklist li.inventea-breadcrumbs {
 	float: none;
 	line-height: 18px;
 	font-weight: normal;
+}
+
+.inventea-breadcrumbs.wrapped .crumb a,
+.inventea-breadcrumbs.wrapped .crumb.wrapped-medium a,
+.inventea-breadcrumbs.wrapped .crumb.wrapped-tiny a {
+	letter-spacing: normal;
 }
 
 .inventea-breadcrumbs .crumb:before {

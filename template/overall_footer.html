@@ -16,7 +16,7 @@
 				{% set navlink_position = 1 %}
 				{% EVENT overall_header_breadcrumbs_before %}
 
-				<li class="inventea-breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+				<li class="inventea-breadcrumbs breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
 
 				{% if U_SITE_HOME %}
 					<span class="crumb" {{ MICRODATA }}><a itemprop="item" href="{{ U_SITE_HOME }}" data-navbar-reference="home"><i class="icon fa-home fa-fw" aria-hidden="true"></i><span itemprop="name">{{ L_SITE_HOME }}</span></a><meta itemprop="position" content="{{ navlink_position }}{% set navlink_position = navlink_position + 1 %}" /></span>
