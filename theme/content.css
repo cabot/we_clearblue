@@ -471,6 +471,10 @@ dl.faq dt {
 	margin-bottom: 18px;
 }
 
+.profile-rank img {
+	max-width: 160px;	
+}
+
 ul.profile-icons {
 	padding-top: 10px;
 }

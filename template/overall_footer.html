@@ -3,7 +3,7 @@
 	</div>
 </div>
 
-<!-- IF not S_IS_BOT -->{RUN_CRON_TASK}<!-- ENDIF -->
+{% if not S_IS_BOT %}{{ RUN_CRON_TASK }}{% endif %}
 
 <div class="inventea-footer-wrapper">
 	<div id="page-footer" class="inventea-footer page-footer" role="contentinfo">	
