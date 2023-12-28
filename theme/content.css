@@ -37,6 +37,10 @@ table.table1 tbody tr {
 	border-bottom: 0;
 }
 
+.forum-image img {
+	max-width: 100%;
+}
+
 ul.topics .bg1,
 ul.topics .bg2,
 li.row:hover,
