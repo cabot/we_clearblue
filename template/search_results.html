@@ -192,6 +192,7 @@
 			<dd class="search-result-date">{searchresults.POST_DATE}</dd>
 			<dd>{L_FORUM}{L_COLON} <a href="{searchresults.U_VIEW_FORUM}">{searchresults.FORUM_TITLE}</a></dd>
 			<dd>{L_TOPIC}{L_COLON} <a href="{searchresults.U_VIEW_TOPIC}">{searchresults.TOPIC_TITLE}</a></dd>
+			<!-- EVENT search_results_topic_title_after -->
 			<dd>{L_REPLIES}{L_COLON} <strong>{searchresults.TOPIC_REPLIES}</strong></dd>
 			<dd>{L_VIEWS}{L_COLON} <strong>{searchresults.TOPIC_VIEWS}</strong></dd>
 			<!-- EVENT search_results_postprofile_after -->
@@ -226,7 +227,7 @@
 <!-- ENDIF -->
 
 <div class="action-bar bottom">
-	<!-- IF .searchresults and (S_SELECT_SORT_DAYS or S_SELECT_SORT_KEY) -->
+	<!-- IF S_SELECT_SORT_DAYS or S_SELECT_SORT_KEY -->
 	<form method="post" action="{S_SEARCH_ACTION}">
 		<!-- INCLUDE display_options.html -->
 	</form>
